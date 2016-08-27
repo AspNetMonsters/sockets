@@ -5,18 +5,17 @@ namespace ConsoleApplication
 {
     public class Program
     {
+        private static HttpClient Client = new HttpClient();
         public static void Main(string[] args)
         {
             Console.WriteLine("Starting connections");
             for(int i = 0; i<10; i++)
             {
-                using(var client = new HttpClient())
-                {
-                    var result = client.GetAsync("http://aspnetmonsters.com").Result;
-                    Console.WriteLine(result.StatusCode);
-                }
+                var result = Client.GetAsync("http://aspnetmonsters.com").Result;
+                Console.WriteLine(result.StatusCode);
             }
             Console.WriteLine("Connections done");
+            Console.ReadLine();
         }
     }
 }
